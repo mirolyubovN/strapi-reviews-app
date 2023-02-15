@@ -16,8 +16,7 @@
       "type": "string",
       "required": true,
       "unique": true,
-      "minLength": 5,
-      "private": true
+      "minLength": 5
     },
     "rating": {
       "type": "integer",
