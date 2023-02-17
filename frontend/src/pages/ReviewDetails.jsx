@@ -1,5 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useQuery, gql } from '@apollo/client';
+import ReactMarkdown from 'react-markdown';
+import Spinner from '../components/Spinner';
 
 const REVIEW = gql`
 query GetReview($id: ID!) {
@@ -24,7 +26,7 @@ export default function ReviewDetails() {
     }
   });
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Spinner/>;
   if (error) return <p>Error</p>;
 
   console.log(data.review.data);
@@ -40,7 +42,7 @@ export default function ReviewDetails() {
         {actualData.rating}
       </div>
       <div className='review-card__body'>
-        {actualData.body}
+        <ReactMarkdown>{actualData.body}</ReactMarkdown>
       </div>
     </div>
   );

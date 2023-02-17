@@ -1,6 +1,8 @@
 import { useParams, Link } from 'react-router-dom';
 import { useQuery, gql } from '@apollo/client';
 
+import Spinner from '../components/Spinner';
+
 const CATEGORY = gql`
 query GetCategory($id: ID!) {
   category(id: $id) {
@@ -40,7 +42,7 @@ export default function Category() {
     }
   });
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Spinner/>;
   if (error) return <p>Error</p>;
 
   console.log(data, 'category');

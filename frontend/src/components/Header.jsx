@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useQuery, gql } from '@apollo/client';
+import Spinner from './Spinner';
 
 const CATEGORIES = gql`
   query GetCategories {
@@ -16,7 +17,7 @@ const CATEGORIES = gql`
 export default function Header() {
   const { loading, error, data } = useQuery(CATEGORIES);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Spinner/>;
   if (error) return <p>Error</p>;
 
   const actualData = data.categories.data;

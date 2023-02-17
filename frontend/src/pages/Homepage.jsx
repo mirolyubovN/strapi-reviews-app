@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useQuery, gql } from '@apollo/client';
+import Spinner from '../components/Spinner';
 
 const REVIEWS = gql`
   query GetReviews {
@@ -29,7 +30,7 @@ export default function Homepage() {
 
   console.log(data);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Spinner/>;
   if (error) return <p>Error</p>;
 
   return (
