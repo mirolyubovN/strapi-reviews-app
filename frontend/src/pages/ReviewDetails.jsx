@@ -11,7 +11,15 @@ query GetReview($id: ID!) {
       attributes {
         title,
         rating,
-        body
+        body,
+        categories {
+          data {
+            id
+            attributes {
+              name
+            }
+          }
+        }
       }
     }
   }
@@ -38,6 +46,11 @@ export default function ReviewDetails() {
       <h2 className='review-card__title'>
         {actualData.title}
       </h2>
+      <div className='category-meta'>
+        {actualData.categories.data.map(category => (
+          <small key={category.id}>{category.attributes.name} </small>
+        ))}
+      </div>
       <div className='review-card__rating'>
         {actualData.rating}
       </div>
